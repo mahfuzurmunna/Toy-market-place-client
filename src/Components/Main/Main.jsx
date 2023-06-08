@@ -6,7 +6,7 @@ import Footer from '../Shared/Footer';
 
 const Main = () => {
   return (
-    <div>
+    <div className='rehn-regular text-primary '>
       <Header/>
       <Outlet/>
       <Footer/>

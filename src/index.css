@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.my-container {
+  @apply px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:w-[1380px] md:px-24 lg:px-8 lg:py-20;
+}
+
+
+.btn-primary {
+  @apply  transition duration-200  shadow-md  md:mb-0  px-4 py-2 md:px-11 md:py-3 m-2 text-xl rounded-3xl border-transparent border-2 text-white hover:border-primary hover:bg-transparent hover:text-primary bg-primary;
+}
+.btn-secondary {
+  @apply  transition duration-200  shadow-md  md:mb-0  px-4 py-2 md:px-12 md:py-4 m-2 text-xl rounded-3xl border-transparent border-2 text-white hover:border-primary hover:bg-transparent hover:text-primary bg-accent;
+}
+
+.btn-outlined {
+  @apply font-medium  transition duration-200  shadow-md  md:mb-0  px-4 py-2 md:px-8 md:py-3 m-2 text-lg rounded-full text-gray-700 hover:bg-cyan-400 hover:border-transparent border-2 border-cyan-200;
+}
+.active {
+  @apply font-bold tracking-wide text-accent2 transition-colors duration-200;
+}
+.active2 {
+  @apply font-bold text-3xl tracking-wide text-accent2 transition-colors duration-200;
+}
+
+.default {
+  @apply font-medium tracking-wide text-primary transition-colors duration-200 hover:text-accent2;
+}
+.default2 {
+  @apply rehn-light text-2xl tracking-wide text-white transition-colors duration-200 hover:text-accent2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@font-face{
+  font-family: rehn-bold;
+  src: url(./assets/font/Rehn-Bold.otf)
+}
+
+@font-face{
+  font-family: rehn-regular;
+  src: url(./assets/font/Rehn-Regular.otf)
+}
+@font-face{
+  font-family: rehn-medium;
+  src: url(./assets/font/Rehn-Medium.otf)
+}
+
+@font-face {
+  font-family: rehn-extrabold;
+  src: url(./assets/font/Rehn-ExtraBold.otf)
+}
+
+@font-face{
+   font-family: rehn-light;
+  src: url(./assets/font/Rehn-Light.otf)
+}
+
+.rehn-bold{
+  font-family: rehn-bold;
+}
+
+.rehn-regular{
+  font-family: rehn-regular;
+}
+
+.rehn-medium{
+  font-family: rehn-medium;
+}
+
+.rehn-light{
+  font-family: rehn-light;
+}
+
+.rehn-extrabold{
+  font-family: rehn-extrabold;
+}
