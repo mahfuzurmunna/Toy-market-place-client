@@ -1,10 +1,16 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/Authprovider";
 
 const Header = () => {
+  const { user, logOutUser } = useContext(AuthContext);
    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+   const handleLogout = () => {
+    logOutUser().then(res => console.log(res)).catch(error => console.log(error))
+   }
   return (
     <div className=" flex items-center justify-between px-4  mx-auto lg:py-4 sm:max-w-xl md:max-w-full lg:w-[1350px] z-10 ">
       {/* logo */}
@@ -41,11 +47,21 @@ const Header = () => {
       </div>
 
       {/* profile and login */}
-      <div className="hidden lg:inline-block">
-        <NavLink to="/login">
-          <button className="btn-primary">Sign In</button>
-        </NavLink>
-      </div>
+      {user ? (
+        <div className="hidden lg:inline-block">
+          <NavLink to="/login">
+            <button onClick={handleLogout} className="btn-secondary">
+              Sign Out
+            </button>
+          </NavLink>
+        </div>
+      ) : (
+        <div className="hidden lg:inline-block">
+          <NavLink to="/login">
+            <button className="btn-primary">Sign In</button>
+          </NavLink>
+        </div>
+      )}
 
       {/* mobile version */}
       <div className="lg:hidden">
