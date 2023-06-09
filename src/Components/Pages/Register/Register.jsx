@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import puzzle from "../../../assets/plane.png";
 import { AuthContext } from "../../AuthProvider/Authprovider";
 import { useContext, useState } from "react";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { registerUser, googleLogin } = useContext(AuthContext);
@@ -14,6 +15,18 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from.pathname || "/";
   let navigate = useNavigate();
+
+  //show display name
+  const updateUserData = (user, name, url) => {
+    updateProfile(user, {
+      displayName: name,
+      photoURL: url,
+    })
+      .then(() => {
+        console.log("User updated");
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   // handle register function
   const handleRegister = (event) => {
@@ -38,11 +51,12 @@ const Register = () => {
 
     if ((name, email, password)) {
       registerUser(email, password)
-        .then((res) => {
-          const loggedUser = res.user;
+        .then((result) => {
+          const loggedUser = result.user;
           console.log(loggedUser);
           form.reset();
           setSuccess("You have registered Successfully");
+          updateUserData(result.user, name,photourl)
           return navigate(from, { replace: true });
         })
         .catch((error) => {
@@ -74,7 +88,7 @@ const Register = () => {
             alt=""
           />
         </div>
-        <div className="border-2 w-full lg:w-[60%] py-12 lg:py-12 px-6 lg:px-14 rounded-3xl">
+        <div className="border-2 border-accent w-full lg:w-[60%] py-12 lg:py-12 px-6 lg:px-14 rounded-3xl">
           <Link>
             <div className="flex items-center gap-4 cursor-pointer ">
               <img src={logo} alt="" className=" w-[30px] lg:w-[35px]" />
@@ -133,7 +147,7 @@ const Register = () => {
             </div>
             <p className="text-lg rehn-medium mt-2 text-red-700"> {error}</p>
             <p className="text-lg rehn-medium  mt-2 text-green-700">
-            {" "}
+              {" "}
               {success}
             </p>
             <input

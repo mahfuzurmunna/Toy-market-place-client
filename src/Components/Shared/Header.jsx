@@ -6,13 +6,16 @@ import { AuthContext } from "../AuthProvider/Authprovider";
 
 const Header = () => {
   const { user, logOutUser } = useContext(AuthContext);
-   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  console.log(user);
 
-   const handleLogout = () => {
-    logOutUser().then(res => console.log(res)).catch(error => console.log(error))
-   }
+  const handleLogout = () => {
+    logOutUser()
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  };
   return (
-    <div className=" flex items-center justify-between px-4  mx-auto lg:py-4 sm:max-w-xl md:max-w-full lg:w-[1350px] z-10 ">
+    <div className=" flex items-center justify-between px-4  mx-auto lg:py-4 sm:max-w-xl md:max-w-full lg:w-[1350px] relative z-50 ">
       {/* logo */}
       <Link>
         <div className="flex items-center gap-4 cursor-pointer py-4">
@@ -23,7 +26,7 @@ const Header = () => {
 
       {/* nav links */}
       <div>
-        <ul className="lg:flex text-xl hidden gap-6 ">
+        <ul className="lg:flex text-xl hidden gap-8 ">
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "active" : "default")}
@@ -36,6 +39,24 @@ const Header = () => {
           >
             <li>All Toy</li>
           </NavLink>
+          {user ? (
+            <>
+              <NavLink
+                to="/mytoys"
+                className={({ isActive }) => (isActive ? "active" : "default")}
+              >
+                <li>My Toy</li>
+              </NavLink>
+              <NavLink
+                to="/addtoy"
+                className={({ isActive }) => (isActive ? "active" : "default")}
+              >
+                <li>Add Toy</li>
+              </NavLink>
+            </>
+          ) : (
+            <></>
+          )}
           <NavLink
             to="/blog"
             className={({ isActive }) => (isActive ? "active" : "default")}
@@ -48,9 +69,16 @@ const Header = () => {
 
       {/* profile and login */}
       {user ? (
-        <div className="hidden lg:inline-block">
-          <NavLink to="/login">
-            <button onClick={handleLogout} className="btn-secondary">
+        <div className="hidden lg:flex lg:items-center gap-3">
+          <img
+            src={user.photoURL}
+            className="rounded-full p-1 w-14 h-14 ring-2 ring-primary"
+            aria-label={user.displayName}
+            title={user.displayName}
+          />
+
+          <NavLink>
+            <button onClick={handleLogout} className="btn-primary">
               Sign Out
             </button>
           </NavLink>
@@ -115,7 +143,7 @@ const Header = () => {
                 </div>
               </div>
               <nav className="mt-12">
-                <ul className="space-y-4 text-center">
+                <ul className="space-y-4 text-center ">
                   <li>
                     <NavLink
                       to="/"
@@ -128,14 +156,40 @@ const Header = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/alltoys"
+                      to="/alltoy"
                       className={({ isActive }) =>
                         isActive ? "active2" : "default2"
                       }
                     >
-                      All Toys
+                      All Toy
                     </NavLink>
                   </li>
+                  {user ? (
+                    <>
+                      <li>
+                        <NavLink
+                          to="/mytoys"
+                          className={({ isActive }) =>
+                            isActive ? "active2" : "default2"
+                          }
+                        >
+                          My Toy
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/addtoy"
+                          className={({ isActive }) =>
+                            isActive ? "active2" : "default2"
+                          }
+                        >
+                          Add Toy
+                        </NavLink>
+                      </li>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   <li>
                     <NavLink
                       to="/blog"
@@ -143,6 +197,7 @@ const Header = () => {
                         isActive ? "active2" : "default2"
                       }
                     >
+                      {" "}
                       Blog
                     </NavLink>
                   </li>
