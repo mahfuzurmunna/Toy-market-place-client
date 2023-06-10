@@ -119,7 +119,7 @@ const Login = () => {
                 {" "}
                 <input
                   className="checkbox inline"
-                  type="checkbox"
+                  type="check"
                   value=""
                   id="exampleCheck2"
                 />

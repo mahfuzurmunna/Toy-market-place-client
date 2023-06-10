@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import plane from "../../../assets/plane.png";
 import plane2 from "../../../assets/plane2.png";
 import Howto from "./Howto";
+import Gallery from "./Gallery";
 
 const Home = () => {
   return (
@@ -36,6 +37,9 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        {/* gallery section */}
+        <Gallery/>
       </div>
     </div>
   );

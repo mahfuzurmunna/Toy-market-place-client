@@ -1,8 +1,82 @@
 // eslint-disable-next-line no-unused-vars
 
+import { useContext, useState } from "react";
 import add from "../../../assets/add.png";
+import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../AuthProvider/Authprovider";
 
 const Addatoy = () => {
+  const [category, setCategory] = useState('');
+  const [rating, setRating] = useState('');
+  const {user} = useContext(AuthContext);
+
+  const handleCategory = event => {
+    setCategory(event.target.value);
+  }
+    const handleRating = (event) => {
+      setRating(event.target.value);
+    };
+
+  const handleAddtoy = event => {
+    event.preventDefault();
+
+    const form = event.target;
+    const toyname= form.toyname.value;
+    const name =  form.name.value;
+    const email = user?.email || form.email.value;
+    const selectCategory = category;
+    const selectRating = rating;
+    const price = form.price.value;
+    const quantity = form.quantity.value;
+    const description = form.description.value;
+    const photoURL = form.photourl.value
+
+    const toyData = {
+      toyname,
+      name,
+      email,
+      selectCategory,
+      selectRating,
+      price,
+      quantity,
+      description,
+      photoURL,
+    }; 
+
+    console.log(toyData);
+
+    fetch("http://localhost:5000/alltoys", {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(toyData)
+    }).then(res => res.json()).then(data => {
+      console.log(data);
+      form.reset();
+      if(data.insertedId) {
+          toast.success("Toy successfully Added", {
+            style: {
+              backgroundColor: "#FDC153",
+              border: "3px solid #ffffff",
+              borderRadius: "30px",
+              padding: "16px",
+              color: "#ffffff",
+              fontSize: "20px",
+            },
+            iconTheme: {
+              primary: "#713200",
+              secondary: "#FFFAEE",
+            },
+          });
+      }
+    })
+
+  }
+
+
+  // toast
+ 
   return (
     <div className="my-container rounded-xl mb-12 ">
       <div className="flex flex-col lg:flex-row justify-between items-center gap-12 ">
@@ -12,7 +86,7 @@ const Addatoy = () => {
             Bring forth your cherished playthings, for they shall be added to
             the realm of my delightful amusements!
           </p>
-          <form action="">
+          <form onSubmit={handleAddtoy} action="">
             {/* toy name and seller */}
             <div className="flex gap-6">
               <div className="w-[50%]">
@@ -29,7 +103,8 @@ const Addatoy = () => {
                 <label htmlFor="">Seller Name</label> <br />
                 <input
                   type="text"
-                  name="sellername"
+                  name="name"
+                  defaultValue={user?.displayName}
                   placeholder="Enter name"
                   className=" mt-2 mb-4 border-2 border-x-accent-contentfocus w-full px-4 py-3 rounded-3xl  outline-accent2"
                   required
@@ -43,7 +118,8 @@ const Addatoy = () => {
                 <label htmlFor="">Seller Email</label> <br />
                 <input
                   type="email"
-                  name="selleremail"
+                  name="email"
+                  defaultValue={user?.email}
                   placeholder="Enter email"
                   className=" mt-2 mb-4 border-2 border-x-accent-contentfocus w-full px-4 py-3 rounded-3xl  outline-accent2"
                   required
@@ -54,22 +130,25 @@ const Addatoy = () => {
                 <select
                   type="text"
                   name="category"
-                  // onChange={handleCategory}
-
+                  onChange={handleCategory}
                   className=" mt-2 mb-4 border-2 border-x-accent-contentfocus w-full px-4 py-3 rounded-3xl  outline-accent2"
-                  required
                 >
-                  <option className="text-sm text-gray-400" disabled selected>
+                  <option
+                    className="text-sm text-gray-400"
+                    disabled
+                    selected
+                    required
+                  >
                     Select Category
                   </option>
 
-                  <option value="1" className="text-lg">
+                  <option value="Airplane" className="text-lg">
                     Airplane
                   </option>
-                  <option value="2" className="text-lg">
-                    Car
+                  <option value="Vehicle" className="text-lg">
+                    Vehicle
                   </option>
-                  <option value="3" className="text-lg">
+                  <option value="Puzzle" className="text-lg">
                     Puzzle
                   </option>
                 </select>
@@ -93,7 +172,7 @@ const Addatoy = () => {
                 <select
                   type="text"
                   name="rating"
-                  // onChange={handleCategory}
+                  onChange={handleRating}
                   placeholder="Enter Rating"
                   className=" mt-2 mb-4 border-2 border-x-accent-contentfocus w-full px-4 py-3 rounded-3xl  outline-accent2"
                   required
@@ -154,7 +233,9 @@ const Addatoy = () => {
               type="submit"
               className=" transition duration-200  shadow-md  md:mb-0  px-4 py-2 md:px-12 md:py-3 m-2 text-xl rounded-3xl border-transparent border-2 text-white  bg-accent mb-8 w-full cursor-pointer"
               value="Submit"
+              // onClick={notify}
             />
+            <Toaster />
           </form>
         </div>
         <div className="">
