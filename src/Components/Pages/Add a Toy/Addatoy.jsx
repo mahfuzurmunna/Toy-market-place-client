@@ -26,7 +26,7 @@ const Addatoy = () => {
     const email = user?.email || form.email.value;
     const selectCategory = category;
     const selectRating = rating;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const quantity = form.quantity.value;
     const description = form.description.value;
     const photoURL = form.photourl.value

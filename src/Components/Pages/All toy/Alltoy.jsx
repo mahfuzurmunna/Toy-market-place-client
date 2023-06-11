@@ -1,27 +1,42 @@
 import { useEffect, useState } from "react";
 import Toycard from "./Toycard";
-
-
+import Loading from "../Loading/Loading";
 
 const Alltoy = () => {
   const [toys, setToys] = useState([]);
-
-  useEffect(()=> {
-    fetch('http://localhost:5000/alltoys').then(res => res.json()).then(data => {
-      setToys(data);
-    })
-  },[])
+  const [loading, setLoading] = useState(true);
+  const [searchItem, setSearchitem] = useState("");
+  const handleSearch = (event) => {
+    const name = event.target.value;
+    console.log(name);
+    setSearchitem(name);
+  };
+  useEffect(() => {
+    fetch("http://localhost:5000/alltoys")
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+        setLoading(false);
+      });
+  }, []);
   console.log(toys);
   return (
     <div className="my-container">
+      {loading ? <Loading /> : <></>}
       <div className="overflow-x-auto">
+        <input
+          onChange={handleSearch}
+          type="search"
+          name=""
+          id=""
+          placeholder="search by toy name "
+          className="w-1/5 px-4 py-3 rounded-lg border border-bg2 my-6"
+        />
         <table className="table border border-bg2">
           {/* head */}
-          <thead >
+          <thead>
             <tr className="rehn-normal text-primary text-base underline">
-              <th>
-              
-              </th>
+              <th></th>
               <th>Image</th>
               <th className="pr-16">Seller Name</th>
               <th>Toy Name</th>
@@ -30,10 +45,17 @@ const Alltoy = () => {
               <th>Available Quantity</th>
             </tr>
           </thead>
-          {toys.map((toy) => (
-            <Toycard toy={toy} key={toy._id}></Toycard>
-          ))}
-          {/* foot */}
+          {toys
+            .filter(
+              (toy) =>
+                searchItem === "" ||
+                toy.toyname.toLowerCase().includes(searchItem.toLowerCase())
+            )
+            .map((toy) => (
+              <Toycard toy={toy} key={toy._id} />
+            ))}
+         
+      
         </table>
       </div>
     </div>
