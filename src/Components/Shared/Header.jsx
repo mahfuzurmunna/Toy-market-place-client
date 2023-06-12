@@ -34,7 +34,7 @@ const Header = () => {
             <li>Home</li>
           </NavLink>
           <NavLink
-            to="/alltoy"
+            to="/alltoys"
             className={({ isActive }) => (isActive ? "active" : "default")}
           >
             <li>All Toy</li>
@@ -156,7 +156,7 @@ const Header = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/alltoy"
+                      to="/alltoys"
                       className={({ isActive }) =>
                         isActive ? "active2" : "default2"
                       }

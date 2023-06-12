@@ -14,6 +14,9 @@
 .btn-secondary {
   @apply  transition duration-200  shadow-md  md:mb-0  px-4 py-2 md:px-12 md:py-4 m-2 text-2xl rounded-3xl border-transparent border-2 text-white hover:border-primary hover:bg-transparent hover:text-primary bg-accent;
 }
+
+.btn-outline{
+   @apply  transition duration-200  shadow-md  md:mb-0  px-4 py-2 md:px-6 md:py-3 m-2 text-xl rounded-3xl hover:border-transparent border-2 text-primary border-primary bg-transparent hover:text-white hover:bg-primary;}
 .btn-white {
   @apply  transition duration-200 rehn-medium shadow-md  md:mb-0  px-4 py-2 md:px-12 md:py-4 m-2 text-2xl rounded-3xl border-transparent border-2 text-primary hover:border-white hover:bg-transparent hover:text-white bg-white;
 }

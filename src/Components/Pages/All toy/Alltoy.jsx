@@ -29,9 +29,10 @@ const Alltoy = () => {
           type="search"
           name=""
           id=""
-          placeholder="search by toy name "
+          placeholder="Search by toy name "
           className="w-1/5 px-4 py-3 rounded-lg border border-bg2 my-6"
         />
+         
         <table className="table border border-bg2">
           {/* head */}
           <thead>
@@ -55,7 +56,7 @@ const Alltoy = () => {
               <Toycard toy={toy} key={toy._id} />
             ))}
          
-      
+          {/* foot */}
         </table>
       </div>
     </div>

@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const Toycard = ({ toy }) => {
   const {
+    _id,
     toyname,
     price,
     selectCategory,
@@ -12,7 +15,7 @@ const Toycard = ({ toy }) => {
     <tbody>
       {/* row 1 */}
       <tr>
-        <th >
+        <th>
           <label>
             <input type="checkbox" className="checkbox" />
           </label>
@@ -20,7 +23,7 @@ const Toycard = ({ toy }) => {
         <td>
           <div className="avatar">
             <div className="mask mask-squircle w-12 h-12">
-              <img src={photoURL} alt="Avatar Tailwind CSS Component" />
+              <img src={photoURL}  className="w-[500px]" />
             </div>
           </div>
         </td>
@@ -30,9 +33,11 @@ const Toycard = ({ toy }) => {
         <td>{price}</td>
         <td>{quantity}</td>
         <th>
-          <button className="btn bg-accent hover:bg-accent2 btn-sm text-white px-4  rounded-xl capitalize rehn-light">
-            details
-          </button>
+          <Link to={`/alltoys/${_id}`}>
+            <button className="btn bg-accent hover:bg-accent2 btn-sm text-white px-4  rounded-xl capitalize rehn-light">
+              View Details
+            </button>
+          </Link>
         </th>
       </tr>
     </tbody>

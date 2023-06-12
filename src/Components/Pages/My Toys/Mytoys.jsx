@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/Authprovider";
 import Mytoycard from "./Mytoycard";
-import Loading from "../Loading/Loading";
+// import Loading from "../Loading/Loading";
 
 const Mytoys = () => {
-  const { user, } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [price, setPrice] = useState(1);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(false);
   console.log(user.email);
-  console.log(loading);
+  // console.log(loading);
 
   const handlePriceChange = (event) => {
     let value = parseInt(event.target.value);
@@ -17,20 +17,20 @@ const Mytoys = () => {
     console.log(event.target.value);
   };
 
-  const url = `http://localhost:5000/alltoys/${user?.email}&${price}`;
+  // const url = `http://localhost:5000/alltoys/${user?.email}&${price}`;
   useEffect(() => {
-    fetch(url)
+    fetch(`http://localhost:5000/alltoys/${user?.email}&${price}`)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
+        // setLoading(false);
         setToys(data);
       });
-  }, [url]);
+  }, [toys,user]);
 
   console.log(toys);
   return (
     <div className="my-container">
-      {loading ? <Loading /> : <></>}
+      {/* {loading ? <Loading /> : <></>} */}
       <div className="overflow-x-auto">
         <select
           onChange={handlePriceChange}
