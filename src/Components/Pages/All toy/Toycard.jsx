@@ -23,7 +23,7 @@ const Toycard = ({ toy }) => {
         <td>
           <div className="avatar">
             <div className="mask mask-squircle w-12 h-12">
-              <img src={photoURL}  className="w-[500px]" />
+              <img src={photoURL}  className="" />
             </div>
           </div>
         </td>

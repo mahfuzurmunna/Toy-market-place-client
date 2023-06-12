@@ -5,7 +5,7 @@ import plane from "../../../assets/plane.png";
 import plane2 from "../../../assets/plane2.png";
 import Howto from "./Howto";
 import puzzle from "../../../assets/puzzle2.png";
-// import Gallery from "./Gallery";
+import Gallery from "./Gallery";
 
 import Shopcategory from "./Shopcategory";
 import { useState, useEffect } from "react";
@@ -37,12 +37,17 @@ const Home = () => {
     <div className="bg-bg relative z-10">
       <Banner />
       <div className="my-container">
+        {/* gallery section */}
+        <div className="mb-16">
+          <h2 className="title text-center ">Our Gallery</h2>
+        
+          <Gallery />
+        </div>
+
         {/* how to buy section */}
         <Howto />
 
         {/* bigger toy section */}
-        {/* gallery section */}
-        {/* <Gallery /> */}
         <div className="bg-accent rounded-3xl relative">
           <img
             src={plane2}
@@ -79,7 +84,7 @@ const Home = () => {
           <p className="rehn-light text-base mt-2 text-center">
             - Quality Products -{" "}
           </p>
-          <div className="flex gap-8 items-center justify-center mt-8">
+          <div className="flex gap-8 items-center justify-center  mt-8">
             {categories.map((category, index) => (
               <span
                 key={index}
@@ -103,20 +108,22 @@ const Home = () => {
 
         {/* extra section */}
         <div className="bg-[#7F95EC] rounded-3xl relative my-16">
-          <div className="flex flex-col justify-center text-center md:text-start lg:justify-between lg:flex-row items-center  gap-6 py-20 px-6 lg:px-12 text-white h-[600px] ">
-            <div className="lg:w-2/4">
-              <h2 className="rehn-bold text-4xl lg:text-7xl mb-8">
-               Improve Childs <br /> Brain Growth
+          <div className="flex flex-col justify-center text-center md:text-start lg:justify-between lg:flex-row items-center  gap-12 py-20 px-6 lg:px-12 text-white h-[625px] ">
+            <div className="lg:w-[60%] pl-12">
+              <h2 className="rehn-bold text-4xl lg:text-6xl mb-8">
+                Improve Childs <br /> Brain Growth
               </h2>
-              <p className="rehn-light text-xl leading-normal  lg:text-2xl lg:leading-relaxed my-4 lg:my-10 lg:text-justify">
-                Our members can borrow fully assembled larger items from just $10 a month eacch (minimum 2 months) with no packaging to throw away.
+              <p className="rehn-light text-xl leading-normal  lg:text-xl lg:leading-relaxed my-4 lg:my-10 lg:text-justify">
+                Our members can borrow fully assembled larger items from just
+                $10 a month eacch (minimum 2 months) with no packaging to throw
+                away.
               </p>
               <button className="btn-white">Find Store</button>
             </div>
             <div>
               <img
                 src={puzzle}
-                className="rounded-[30px] mx-auto lg:mx-0 ml-4 w-[70%] lg:w-[80%]"
+                className="rounded-[30px] mx-auto lg:mx-0 ml-4 w-[70%] lg:w-[85%]"
                 alt=""
               />
             </div>

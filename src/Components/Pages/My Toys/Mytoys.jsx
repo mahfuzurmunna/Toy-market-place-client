@@ -1,15 +1,59 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/Authprovider";
 import Mytoycard from "./Mytoycard";
-// import Loading from "../Loading/Loading";
+import Loading from "../Loading/Loading";
+import toast, { Toaster } from "react-hot-toast";
+
+
+import Swal from "sweetalert2";
 
 const Mytoys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [price, setPrice] = useState(1);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   console.log(user.email);
   // console.log(loading);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/alltoys/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if(data.deletedCount >0 ){
+               toast.success("Toy successfully Added", {
+                 style: {
+                   backgroundColor: "#FDC153",
+                   border: "3px solid #ffffff",
+                   borderRadius: "30px",
+                   padding: "16px",
+                   color: "#ffffff",
+                   fontSize: "20px",
+                 },
+                 iconTheme: {
+                   primary: "#713200",
+                   secondary: "#FFFAEE",
+                 },
+               });
+             const remaining = toys.filter (toy => toy._id !== id);
+             setToys(remaining);
+            }
+          });
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
 
   const handlePriceChange = (event) => {
     let value = parseInt(event.target.value);
@@ -17,20 +61,22 @@ const Mytoys = () => {
     console.log(event.target.value);
   };
 
-  // const url = `http://localhost:5000/alltoys/${user?.email}&${price}`;
+  const url = `http://localhost:5000/alltoy/${user?.email}&${price}`;
   useEffect(() => {
-    fetch(`http://localhost:5000/alltoys/${user?.email}&${price}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // setLoading(false);
-        setToys(data);
-      });
-  }, [toys,user]);
+   if(user?.email){
+     fetch(url)
+       .then((res) => res.json())
+       .then((data) => {
+         setLoading(false);
+         setToys(data);
+       });
+   }
+  }, [url]);
 
   console.log(toys);
   return (
     <div className="my-container">
-      {/* {loading ? <Loading /> : <></>} */}
+      {loading ? <Loading /> : <></>}
       <div className="overflow-x-auto">
         <select
           onChange={handlePriceChange}
@@ -58,9 +104,14 @@ const Mytoys = () => {
             </tr>
           </thead>
           {toys.map((toy) => (
-            <Mytoycard toy={toy} key={toy._id}></Mytoycard>
+            <Mytoycard
+              toy={toy}
+              key={toy._id}
+              handleDelete={handleDelete}
+            ></Mytoycard>
           ))}
           {/* foot */}
+          <Toaster />
         </table>
       </div>
     </div>

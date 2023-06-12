@@ -3,6 +3,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
+
 const Viewdetails = () => {
   const singleToy = useLoaderData();
   console.log(singleToy);
