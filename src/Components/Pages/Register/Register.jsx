@@ -6,12 +6,13 @@ import puzzle from "../../../assets/plane.png";
 import { AuthContext } from "../../AuthProvider/Authprovider";
 import { useContext, useState } from "react";
 import { updateProfile } from "firebase/auth";
+import useTitle from "../../../hooks/useTitle";
 
 const Register = () => {
   const { registerUser, googleLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+useTitle("Kidquest | Register");
   const location = useLocation();
   const from = location.state?.from.pathname || "/";
   let navigate = useNavigate();

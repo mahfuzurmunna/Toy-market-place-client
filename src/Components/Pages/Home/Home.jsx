@@ -6,14 +6,17 @@ import plane2 from "../../../assets/plane2.png";
 import Howto from "./Howto";
 import puzzle from "../../../assets/puzzle2.png";
 import Gallery from "./Gallery";
-
+import AOS from "aos";
+AOS.init();
+import "aos/dist/aos.css";
 import Shopcategory from "./Shopcategory";
 import { useState, useEffect } from "react";
+import useTitle from "../../../hooks/useTitle";
 
 const Home = () => {
   const [toys, setToys] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
-
+useTitle('Kidquest | Home')
   useEffect(() => {
     fetch("http://localhost:5000/alltoys")
       .then((res) => res.json())
@@ -37,13 +40,6 @@ const Home = () => {
     <div className="bg-bg relative z-10">
       <Banner />
       <div className="my-container">
-        {/* gallery section */}
-        <div className="mb-16">
-          <h2 className="title text-center ">Our Gallery</h2>
-        
-          <Gallery />
-        </div>
-
         {/* how to buy section */}
         <Howto />
 
@@ -77,7 +73,11 @@ const Home = () => {
           </div>
         </div>
         {/* category section */}
-        <div className="mt-32">
+        <div
+          className="mt-32"
+          data-aos="fade-up"
+          data-aos-anchor-placement="center-bottom"
+        >
           <h2 className="text-center rehn-bold text-3xl lg:text-6xl">
             Best Sellers
           </h2>
@@ -108,8 +108,8 @@ const Home = () => {
 
         {/* extra section */}
         <div className="bg-[#7F95EC] rounded-3xl relative my-16">
-          <div className="flex flex-col justify-center text-center md:text-start lg:justify-between lg:flex-row items-center  gap-12 py-20 px-6 lg:px-12 text-white h-[625px] ">
-            <div className="lg:w-[60%] pl-12">
+          <div className="flex flex-col justify-center  items-center text-center md:text-start lg:justify-between lg:flex-row  gap-12 py-20 px-6 lg:px-12 text-white h-[725px] lg:h-[600px] ">
+            <div className="lg:w-[60%] lg:pl-12">
               <h2 className="rehn-bold text-4xl lg:text-6xl mb-8">
                 Improve Childs <br /> Brain Growth
               </h2>
@@ -120,14 +120,20 @@ const Home = () => {
               </p>
               <button className="btn-white">Find Store</button>
             </div>
-            <div>
+            <div className="mx-auto">
               <img
                 src={puzzle}
-                className="rounded-[30px] mx-auto lg:mx-0 ml-4 w-[70%] lg:w-[85%]"
+                className="rounded-[30px] mx-auto lg:mx-0 ml-5  lg:mb-0 w-[85%]"
                 alt=""
               />
             </div>
           </div>
+        </div>
+        {/* gallery section */}
+        <div className="mb-16" data-aos="zoom-in">
+          <h2 className="title text-center  ">Our Gallery</h2>
+
+          <Gallery />
         </div>
       </div>
     </div>

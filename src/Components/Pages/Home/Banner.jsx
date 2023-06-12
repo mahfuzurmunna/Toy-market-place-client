@@ -6,9 +6,15 @@ import { FaFacebook, FaInstagram,  FaTwitter,  } from "react-icons/fa";
 const Banner = () => {
   return (
     <div>
-      <div className="bg-bg-nav2 bg-cover  lg:w-full h-[720px] lg:h-[950px] relative bottom-32 ">
+      <div
+        className="bg-bg-nav2 bg-cover  lg:w-full h-[720px] lg:h-[950px] relative bottom-32  "
+      
+      >
         <div className="my-container">
-          <div className="  py-36 lg:w-[70%] text-center lg:text-left">
+          <div
+            className="  py-36 lg:w-[70%] text-center lg:text-left"
+            data-aos="fade-right"
+          >
             <div>
               <img
                 src={bird}

@@ -6,12 +6,14 @@ import toast, { Toaster } from "react-hot-toast";
 
 
 import Swal from "sweetalert2";
+import useTitle from "../../../hooks/useTitle";
 
 const Mytoys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [price, setPrice] = useState(1);
   const [loading, setLoading] = useState(true);
+  useTitle("Kidquest | Mytoys");
   console.log(user.email);
   // console.log(loading);
   const handleDelete = (id) => {

@@ -4,12 +4,13 @@ import { useContext, useState } from "react";
 import add from "../../../assets/add.png";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/Authprovider";
+import useTitle from "../../../hooks/useTitle";
 
 const Addatoy = () => {
   const [category, setCategory] = useState('');
   const [rating, setRating] = useState('');
   const {user} = useContext(AuthContext);
-
+useTitle("Kidquest | Add Toy");
   const handleCategory = event => {
     setCategory(event.target.value);
   }

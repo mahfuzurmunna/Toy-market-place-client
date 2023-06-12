@@ -1,9 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 
 const Blogs = () => {
   const location = useLocation();
+  useTitle("Kidquest | Blogs");
 
   const path = location.pathname;
   return (

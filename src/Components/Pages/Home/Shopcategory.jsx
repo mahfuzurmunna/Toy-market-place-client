@@ -9,7 +9,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 const Shopcategory = ({toy}) => {
   const { _id, toyname, price, selectCategory, quantity, name, photoURL,selectRating } = toy;
   return (
-    <div className="mx-auto border-2 p-4 mt-4 rounded-3xl text-center shadow-md shadow-bg2">
+    <div className="mx-auto border-2 p-4 mt-4 rounded-3xl text-center shadow-md shadow-bg2" >
       <img
         src={photoURL}
         className="w-[300px] object-cover h-[325px] rounded-3xl p-2"

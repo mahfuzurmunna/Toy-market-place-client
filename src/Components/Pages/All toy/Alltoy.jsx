@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Toycard from "./Toycard";
 import Loading from "../Loading/Loading";
+import useTitle from "../../../hooks/useTitle";
 
 const Alltoy = () => {
   const [toys, setToys] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchItem, setSearchitem] = useState("");
+  useTitle("Kidquest | Alltoy");
   const handleSearch = (event) => {
     const name = event.target.value;
     console.log(name);

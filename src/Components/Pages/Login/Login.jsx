@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React, {  useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import logo from "../../../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import puzzle from "../../../assets/puzzle.png";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import app from "../../../../firebase.config";
 import { AuthContext } from "../../AuthProvider/Authprovider";
+import useTitle from "../../../hooks/useTitle";
 
 const auth = getAuth(app);
 
@@ -15,7 +16,7 @@ const Login = () => {
   const [success, setSuccess] = useState("");
   const { loginUser, googleLogin } = useContext(AuthContext);
   const location = useLocation();
-
+  useTitle("Kidquest | Login");
   const from = location.state?.from.pathname || "/";
   let navigate = useNavigate();
   const emailRef = useRef();
@@ -77,7 +78,7 @@ const Login = () => {
       });
   };
 
-  return ( 
+  return (
     <div className="my-container rounded-xl mb-12 ">
       <div className="flex flex-col lg:flex-row justify-between items-center gap-8 ">
         <div className="">
