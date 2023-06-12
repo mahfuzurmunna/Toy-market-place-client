@@ -1,15 +1,34 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { FaStar } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
+import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from '../../AuthProvider/Authprovider';
 
 const Shopcategory = ({toy}) => {
+  const {user} = useContext(AuthContext);
   const { _id, toyname, price, selectCategory, quantity, name, photoURL,selectRating } = toy;
+  const hanldeToast = event => {
+   toast.success("Please login to see details of the toys", {
+            style: {
+              backgroundColor: "#FDC153",
+              border: "3px solid #ffffff",
+              borderRadius: "30px",
+              padding: "16px",
+              color: "#ffffff",
+              fontSize: "20px",
+            },
+            iconTheme: {
+              primary: "#713200",
+              secondary: "#FFFAEE",
+            },
+          });
+  }
   return (
-    <div className="mx-auto border-2 p-4 mt-4 rounded-3xl text-center shadow-md shadow-bg2" >
+    <div className="mx-auto border-2 p-4 mt-4 rounded-3xl text-center shadow-md shadow-bg2">
       <img
         src={photoURL}
         className="w-[300px] object-cover h-[325px] rounded-3xl p-2"
@@ -25,14 +44,22 @@ const Shopcategory = ({toy}) => {
           <FaStar className="inline ml-1 text-accent3 mb-1"></FaStar>
         </p>
         <span>
-          <Link to={`/alltoys/${_id}`}>
-            <button className="btn-outline">
-              View Details 
-              
-                <BsArrowUpRight className='ml-2 inline'></BsArrowUpRight>
-              
-            </button>
-          </Link>
+          {user ? (
+            <Link to={`/alltoys/${_id}`}>
+              <button className="btn-outline">
+                View Details
+                <BsArrowUpRight className="ml-2 inline"></BsArrowUpRight>
+              </button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button onClick={hanldeToast} className="btn-outline">
+                View Details
+                <BsArrowUpRight className="ml-2 inline"></BsArrowUpRight>
+              </button>
+            </Link>
+          )}
+          <Toaster />
         </span>
       </div>
     </div>

@@ -13,7 +13,7 @@ const Updatetoy = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/alltoys/${id}`)
+    fetch(`https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys/${id}`)
       .then((res) => res.json())
       .then((data) => setToy(data));
   }, [toy]);
@@ -40,7 +40,7 @@ const Updatetoy = () => {
     };
 
 
-    fetch(`http://localhost:5000/alltoys/${id}`, {
+    fetch(`https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

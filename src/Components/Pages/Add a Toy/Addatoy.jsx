@@ -46,7 +46,7 @@ useTitle("Kidquest | Add Toy");
 
     console.log(toyData);
 
-    fetch("http://localhost:5000/alltoys", {
+    fetch("https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys", {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

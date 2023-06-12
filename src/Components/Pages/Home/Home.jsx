@@ -18,7 +18,7 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
 useTitle('Kidquest | Home')
   useEffect(() => {
-    fetch("http://localhost:5000/alltoys")
+    fetch("https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys")
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
@@ -75,8 +75,7 @@ useTitle('Kidquest | Home')
         {/* category section */}
         <div
           className="mt-32"
-          data-aos="fade-up"
-          data-aos-anchor-placement="center-bottom"
+        
         >
           <h2 className="text-center rehn-bold text-3xl lg:text-6xl">
             Best Sellers

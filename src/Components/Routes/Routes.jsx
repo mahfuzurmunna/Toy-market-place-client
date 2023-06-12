@@ -45,7 +45,7 @@ const router = createBrowserRouter([
           </Privateroute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/alltoys/${params.id}`),
+          fetch(`https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys/${params.id}`),
       },
       {
         path: "/updatetoys/:id",

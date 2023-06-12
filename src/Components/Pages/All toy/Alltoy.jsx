@@ -14,7 +14,7 @@ const Alltoy = () => {
     setSearchitem(name);
   };
   useEffect(() => {
-    fetch("http://localhost:5000/alltoys")
+    fetch("https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys")
       .then((res) => res.json())
       .then((data) => {
         setToys(data);

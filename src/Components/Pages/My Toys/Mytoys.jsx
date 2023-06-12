@@ -27,7 +27,7 @@ const Mytoys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/alltoys/${id}`, {
+        fetch(`https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoys/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -63,7 +63,7 @@ const Mytoys = () => {
     console.log(event.target.value);
   };
 
-  const url = `http://localhost:5000/alltoy/${user?.email}&${price}`;
+  const url = `https://kidquest-toy-marketplace-mahfuzurmunna.vercel.app/alltoy/${user?.email}&${price}`;
   useEffect(() => {
    if(user?.email){
      fetch(url)
