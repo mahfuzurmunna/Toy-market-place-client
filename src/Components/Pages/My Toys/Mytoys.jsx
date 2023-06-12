@@ -30,9 +30,9 @@ const Mytoys = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+       
             if(data.deletedCount >0 ){
-               toast.success("Toy successfully Added", {
+               toast.success("Toy Item Deleted", {
                  style: {
                    backgroundColor: "#FDC153",
                    border: "3px solid #ffffff",
@@ -50,7 +50,7 @@ const Mytoys = () => {
              setToys(remaining);
             }
           });
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+    
       }
     });
   };

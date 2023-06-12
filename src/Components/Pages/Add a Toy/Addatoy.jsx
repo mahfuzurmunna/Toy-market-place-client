@@ -160,7 +160,7 @@ const Addatoy = () => {
               <div className="w-[50%]">
                 <label htmlFor="">Price</label> <br />
                 <input
-                  type="text"
+                  type="number"
                   name="price"
                   placeholder="Enter price"
                   className=" mt-2 mb-4 border-2 border-x-accent-contentfocus w-full px-4 py-3 rounded-3xl  outline-accent2"
