@@ -99,7 +99,7 @@ useTitle('Kidquest | Home')
             ))}
           </div>
           <div className="grid  md:grid-cols-2 lg:grid-cols-3 mt-8 justify-items-center">
-            {filteredToys.map((toy) => (
+            {filteredToys.slice(0,3).map((toy) => (
               <Shopcategory key={toy._id} toy={toy} />
             ))}
           </div>

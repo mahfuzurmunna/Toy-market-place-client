@@ -54,8 +54,8 @@ const Alltoy = () => {
                 searchItem === "" ||
                 toy.toyname.toLowerCase().includes(searchItem.toLowerCase())
             )
-            .map((toy) => (
-              <Toycard toy={toy} key={toy._id} />
+            .map((toy, index) => (
+              <Toycard toy={toy} index={index} key={toy._id} />
             ))}
          
           {/* foot */}

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const Toycard = ({ toy }) => {
+const Toycard = ({ toy ,index}) => {
   const {
     _id,
     toyname,
@@ -13,17 +13,15 @@ const Toycard = ({ toy }) => {
   } = toy;
   return (
     <tbody>
-      {/* row 1 */}
       <tr>
         <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
+          {/* Replace the label with the number */}
+          <span className="font-bold text-lg">{index + 1}.</span>
         </th>
         <td>
           <div className="avatar">
-            <div className="mask mask-squircle w-12 h-12">
-              <img src={photoURL}  className="" />
+            <div className="mask mask-squircle w-20 h-20">
+              <img src={photoURL} className="" />
             </div>
           </div>
         </td>
@@ -34,7 +32,7 @@ const Toycard = ({ toy }) => {
         <td>{quantity}</td>
         <th>
           <Link to={`/alltoys/${_id}`}>
-            <button className="btn bg-accent hover:bg-accent2 btn-sm text-white px-4  rounded-xl capitalize rehn-light">
+            <button className="btn btn-md bg-accent hover:bg-accent2  text-white  rounded-[1.3rem] capitalize rehn-light">
               View Details
             </button>
           </Link>

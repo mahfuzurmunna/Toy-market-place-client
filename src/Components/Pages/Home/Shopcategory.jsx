@@ -33,21 +33,7 @@ const Shopcategory = ({toy}) => {
           <FaStar className="inline ml-1 text-accent3 mb-1"></FaStar>
         </p>
         <span>
-          {/* {user ? (
-            <Link to={`/alltoys/${_id}`}>
-              <button className="btn-outline">
-                View Details
-                <BsArrowUpRight className="ml-2 inline"></BsArrowUpRight>
-              </button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <button onClick={hanldeToast} className="btn-outline">
-                View Details
-                <BsArrowUpRight className="ml-2 inline"></BsArrowUpRight>
-              </button>
-            </Link>
-          )} */}
+     
           <Link to={`/alltoys/${_id}`}>
             <button className="btn-outline" onClick={() => hanldeToast()}>
               View Details
