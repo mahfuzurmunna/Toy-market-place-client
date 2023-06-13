@@ -210,6 +210,28 @@ const Header = () => {
                   </li>
                 </ul>
               </nav>
+              {user ? (
+                <div className="hidden lg:flex lg:items-center gap-3">
+                  <img
+                    src={user.photoURL}
+                    className="rounded-full p-1 w-14 h-14 ring-2 ring-primary"
+                    aria-label={user.displayName}
+                    title={user.displayName}
+                  />
+
+                  <NavLink>
+                    <button onClick={handleLogout} className="btn-primary">
+                      Sign Out
+                    </button>
+                  </NavLink>
+                </div>
+              ) : (
+                <div className="hidden lg:inline-block">
+                  <NavLink to="/login">
+                    <button className="btn-primary">Sign In</button>
+                  </NavLink>
+                </div>
+              )}
             </div>
           </div>
         )}

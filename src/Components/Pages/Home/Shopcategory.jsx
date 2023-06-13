@@ -11,24 +11,12 @@ import { AuthContext } from '../../AuthProvider/Authprovider';
 const Shopcategory = ({toy}) => {
   const {user} = useContext(AuthContext);
   const { _id, toyname, price, selectCategory, quantity, name, photoURL,selectRating } = toy;
-  const hanldeToast = event => {
-   toast.success("Please login to see details of the toys", {
-            style: {
-              backgroundColor: "#FDC153",
-              border: "3px solid #ffffff",
-              borderRadius: "30px",
-              padding: "16px",
-              color: "#ffffff",
-              fontSize: "20px",
-            },
-            iconTheme: {
-              primary: "#713200",
-              secondary: "#FFFAEE",
-            },
-          });
+  const hanldeToast = () => {
+  alert('you have to login at first')
   }
   return (
     <div className="mx-auto border-2 p-4 mt-4 rounded-3xl text-center shadow-md shadow-bg2">
+   
       <img
         src={photoURL}
         className="w-[300px] object-cover h-[325px] rounded-3xl p-2"
@@ -59,7 +47,6 @@ const Shopcategory = ({toy}) => {
               </button>
             </Link>
           )}
-          <Toaster />
         </span>
       </div>
     </div>
