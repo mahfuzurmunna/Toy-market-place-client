@@ -20,7 +20,7 @@ const Mytoycard = ({ toy, handleDelete }) => {
         <th>
           <button
             onClick={() => handleDelete(_id)}
-            className="btn btn-sm bg-primary text-white btn-circle"
+            className="btn btn-sm bg-primary text-white btn-circle hover:bg-red-600"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
