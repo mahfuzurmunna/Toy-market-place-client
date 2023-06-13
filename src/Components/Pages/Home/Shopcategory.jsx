@@ -12,11 +12,12 @@ const Shopcategory = ({toy}) => {
   const {user} = useContext(AuthContext);
   const { _id, toyname, price, selectCategory, quantity, name, photoURL,selectRating } = toy;
   const hanldeToast = () => {
-  alert('you have to login at first')
+  if(!user){
+      alert("You have to log in first to view details");
+  }
   }
   return (
     <div className="mx-auto border-2 p-4 mt-4 rounded-3xl text-center shadow-md shadow-bg2">
-   
       <img
         src={photoURL}
         className="w-[300px] object-cover h-[325px] rounded-3xl p-2"
@@ -32,7 +33,7 @@ const Shopcategory = ({toy}) => {
           <FaStar className="inline ml-1 text-accent3 mb-1"></FaStar>
         </p>
         <span>
-          {user ? (
+          {/* {user ? (
             <Link to={`/alltoys/${_id}`}>
               <button className="btn-outline">
                 View Details
@@ -46,7 +47,13 @@ const Shopcategory = ({toy}) => {
                 <BsArrowUpRight className="ml-2 inline"></BsArrowUpRight>
               </button>
             </Link>
-          )}
+          )} */}
+          <Link to={`/alltoys/${_id}`}>
+            <button className="btn-outline" onClick={() => hanldeToast()}>
+              View Details
+              <BsArrowUpRight className="ml-2 inline"></BsArrowUpRight>
+            </button>
+          </Link>
         </span>
       </div>
     </div>
