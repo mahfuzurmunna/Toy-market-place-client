@@ -54,7 +54,7 @@ const Mytoycard = ({ toy, handleDelete }) => {
         <td>{quantity}</td>
         <th>
           <Link to={`/updatetoys/${_id}`}>
-            <button className="btn bg-accent mr-4 hover:bg-accent2 btn-sm text-white px-4  rounded-xl capitalize rehn-light">
+            <button className="btn bg-accent mr-4 hover:bg-accent2 btn-md text-white px-4  rounded-[1.3rem] capitalize rehn-light">
               Update
             </button>
           </Link>
