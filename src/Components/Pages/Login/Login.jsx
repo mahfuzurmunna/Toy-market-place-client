@@ -122,7 +122,7 @@ const Login = () => {
                 <input
                   className="checkbox inline"
                   type="check"
-                  value=""
+                  
                   id="exampleCheck2"
                 />
                 <span className="inline font-semibold pl-[0.15rem] hover:cursor-pointer">
