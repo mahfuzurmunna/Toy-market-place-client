@@ -3,6 +3,8 @@ import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/Authprovider";
+import { Tooltip } from "react-tooltip";
+
 
 const Header = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -66,7 +68,7 @@ const Header = () => {
           </NavLink>
         </ul>
       </div>
-
+      <Tooltip id="my-tooltip" />
       {/* profile and login */}
       {user ? (
         <div className="hidden lg:flex lg:items-center gap-3">
@@ -74,7 +76,9 @@ const Header = () => {
             src={user.photoURL}
             className="rounded-full p-1 w-14 h-14 ring-2 ring-primary"
             aria-label={user.displayName}
-            title={user.displayName}
+            
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content={user.displayName}
           />
 
           <NavLink>
@@ -201,37 +205,38 @@ const Header = () => {
                       Blog
                     </NavLink>
                   </li>
-                  <li className="mt-4">
-                    <NavLink to="/login">
-                      <button className="rounded-3xl text-xl bg-accent text-white px-6 py-3 mt-2">
-                        Sign In
-                      </button>
-                    </NavLink>
-                  </li>
+                  {user ? (
+                    <li className="flex flex-col items-center mt-4">
+                      <img
+                        src={user.photoURL}
+                        className="rounded-full p-1 w-14 h-14 ring-2 ring-primary"
+                        aria-label={user.displayName}
+                        title={user.displayName}
+                      />
+
+                      <NavLink>
+                        <button
+                          onClick={handleLogout}
+                          className={`${({ isActive }) =>
+                            isActive
+                              ? "active2"
+                              : "default2"} rounded-3xl text-xl bg-accent text-white px-6 py-3 mt-4`}
+                        >
+                          Sign Out
+                        </button>
+                      </NavLink>
+                    </li>
+                  ) : (
+                    <li className="mt-4">
+                      <NavLink to="/login">
+                        <button className="rounded-3xl text-xl bg-accent text-white px-6 py-3 mt-4">
+                          Sign In
+                        </button>
+                      </NavLink>
+                    </li>
+                  )}
                 </ul>
               </nav>
-              {user ? (
-                <div className="hidden lg:flex lg:items-center gap-3">
-                  <img
-                    src={user.photoURL}
-                    className="rounded-full p-1 w-14 h-14 ring-2 ring-primary"
-                    aria-label={user.displayName}
-                    title={user.displayName}
-                  />
-
-                  <NavLink>
-                    <button onClick={handleLogout} className="btn-primary">
-                      Sign Out
-                    </button>
-                  </NavLink>
-                </div>
-              ) : (
-                <div className="hidden lg:inline-block">
-                  <NavLink to="/login">
-                    <button className="btn-primary">Sign In</button>
-                  </NavLink>
-                </div>
-              )}
             </div>
           </div>
         )}

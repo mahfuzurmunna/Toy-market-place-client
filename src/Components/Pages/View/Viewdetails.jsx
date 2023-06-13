@@ -20,7 +20,7 @@ const Viewdetails = () => {
   } = singleToy;
   return (
     <div className="my-container">
-      <div className="flex gap-16 items-start mb-16">
+      <div className="flex flex-col md:flex-row mx-auto md:text-start md:mx-0 gap-16 items-start mb-16">
         <div>
           <img
             src={photoURL}
@@ -29,7 +29,7 @@ const Viewdetails = () => {
           />
         </div>
 
-        <div className="w-[50%]">
+        <div className="w-[90%] lg:w-[50%]">
           <h1 className="text-4xl mb-8 rehn-bold">{toyname}</h1>
           <div className="text-xl rehn-light space-y-3">
             <p>
